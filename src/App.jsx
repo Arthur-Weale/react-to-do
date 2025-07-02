@@ -10,9 +10,12 @@ function App() {
   const [message, setMessage] = useState(`Let's build something cool today!`);
 
   function mms(){
-      return setMessage("Let’s gooo!!🔥");
+    setMessage(
+      message === `Let's build something cool today!` 
+      ?`Lets Go!!!` 
+      :  `Let's build something cool today!`);
   }
-
+  
   return (
     <>
       <h1>{message}</h1>

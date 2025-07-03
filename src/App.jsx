@@ -7,19 +7,52 @@ import './App.css'
 
 
 function App() {
-  const [message, setMessage] = useState(`Let's build something cool today!`);
+  const [newItem, setNewItem] = useState('');
+  const [items, setItems] = useState([]);
 
-  function mms(){
-    setMessage(
-      message === `Let's build something cool today!` 
-      ?`Lets Go!!!` 
-      :  `Let's build something cool today!`);
+  function handleSubmit(event){
+    event.preventDefault();
+
+    setItems((currentItems) =>{
+      return [...currentItems, {id:crypto.randomUUID(), listItem: newItem, complete: false}]
+    })
+    setNewItem('');
+  }
+
+  function handleCheck(id, complete){
+    setItems(currentItems => {
+      return currentItems.map(item =>{
+        if(item.id === id){
+          return {...item, complete}
+        }
+        return item
+      })
+    })
+  }
+
+  function handleDelete(id){
+    setItems((currentItems)=>{
+      return currentItems.filter(item => (item.id !== id))
+    })
+    
   }
   
   return (
     <>
-      <h1>{message}</h1>
-      <button onClick={mms}>Change</button>
+      <form onSubmit={handleSubmit}>
+          <label htmlFor="todo">To do</label>
+      <input type="text" id='todo' className='todo-entry' onChange={(event) =>setNewItem(event.target.value)} value={newItem} />
+      <button >Add</button>
+      </form>
+      <ul >
+        {items.map(item => (
+          <li key={item.id}>
+            <input type="checkbox" checked={item.complete} onChange={event => handleCheck(item.id,event.target.checked )} />
+            {item.listItem} 
+            <button onClick={() => handleDelete(item.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

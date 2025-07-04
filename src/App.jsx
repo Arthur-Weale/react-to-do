@@ -1,13 +1,11 @@
-//import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import { useEffect, useState } from 'react'
 import './App.css'
+import {Form} from './Form'
 
 
 
 function App() { 
-  const [newItem, setNewItem] = useState('');
+  
   const [items, setItems] = useState(()=>{
     const items = localStorage.getItem('items')
     if(items === null) return []
@@ -15,13 +13,10 @@ function App() {
     return JSON.parse(items)
   });
 
-  function handleSubmit(event){
-    event.preventDefault();
-
-    setItems((currentItems) =>{
-      return [...currentItems, {id:crypto.randomUUID(), listItem: newItem, complete: false}]
+  function addFormElements(listItem){
+      setItems((currentItems) =>{
+      return [...currentItems, {id:crypto.randomUUID(), listItem, complete: false}]
     })
-    setNewItem('');
   }
 
   useEffect(()=> {
@@ -48,11 +43,7 @@ function App() {
   
   return (
     <>
-      <form onSubmit={handleSubmit}>
-          <label htmlFor="todo">To do</label>
-      <input type="text" id='todo' className='todo-entry' onChange={(event) =>setNewItem(event.target.value)} value={newItem} />
-      <button >Add</button>
-      </form>
+      <Form formElements={addFormElements}/>
       <ul >
         {items.map(item => (
           <li key={item.id}>

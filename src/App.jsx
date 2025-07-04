@@ -1,14 +1,19 @@
 //import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 
 
-function App() {
+function App() { 
   const [newItem, setNewItem] = useState('');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(()=>{
+    const items = localStorage.getItem('items')
+    if(items === null) return []
+
+    return JSON.parse(items)
+  });
 
   function handleSubmit(event){
     event.preventDefault();
@@ -18,6 +23,10 @@ function App() {
     })
     setNewItem('');
   }
+
+  useEffect(()=> {
+    localStorage.setItem('items', JSON.stringify(items))
+  }, [items])
 
   function handleCheck(id, complete){
     setItems(currentItems => {
@@ -30,11 +39,11 @@ function App() {
     })
   }
 
-  function handleDelete(id){
+  function HandleDelete(id){
     setItems((currentItems)=>{
       return currentItems.filter(item => (item.id !== id))
     })
-    
+
   }
   
   return (
@@ -49,7 +58,7 @@ function App() {
           <li key={item.id}>
             <input type="checkbox" checked={item.complete} onChange={event => handleCheck(item.id,event.target.checked )} />
             {item.listItem} 
-            <button onClick={() => handleDelete(item.id)}>Delete</button>
+            <button onClick={() => HandleDelete(item.id)}>Delete</button>
           </li>
         ))}
       </ul>

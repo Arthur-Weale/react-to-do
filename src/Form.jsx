@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './index.css'
+import './App.css'
 
 export function Form({formElements}){
     const [newItem, setNewItem] = useState('');

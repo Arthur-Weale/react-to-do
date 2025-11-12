@@ -1,15 +1,13 @@
 import { useState } from "react";
 import './App.css'
 
-export function Form({formElements}){
+export function Form(){
     const [newItem, setNewItem] = useState({
         todo: ""
     });
 
     async function handleSubmit(event){
         event.preventDefault();
-    
-        formElements(newItem);
         setNewItem({todo: ""});
 
         try {

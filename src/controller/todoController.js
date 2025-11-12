@@ -3,7 +3,8 @@ import todoModel from "../models/schema.js"
 
 await initdb();
 
-const insertTodo = async(formData)=>{
+//Create
+export const insertTodo = async(formData)=>{
     try {
         await initdb();
         //console.log(formData.name);
@@ -17,4 +18,32 @@ const insertTodo = async(formData)=>{
     }
 }
 
-export default insertTodo;
+//Read
+export const getTodos = async()=> {
+    try {
+        const result = await todoModel.find();
+        console.log(result);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+//Update
+// const editTodo = async ()=>{
+//     try {
+        
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// //Delete
+// const deleteTodo = async () => {
+//   try {
+//     await todoModel.deleteOne()
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+//export default {insertTodo, getTodos};

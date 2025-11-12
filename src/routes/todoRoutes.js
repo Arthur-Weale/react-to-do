@@ -1,5 +1,5 @@
 import express from "express";
-import insertTodo from "../controller/todoController.js";
+import {insertTodo, getTodos} from "../controller/todoController.js";
 
 const router = express.Router();
 
@@ -10,6 +10,16 @@ router.post("/create", async(req, res)=>{
         res.status(200).json(response)
     } catch (error) {
         console.log(error)
+    }
+})
+
+router.get("/", async (req, res)=>{
+    try {
+        const response = await getTodos();
+        res.status(200).json(response)
+        //console.log(res.json())
+    } catch (error) {
+        console.log(error);
     }
 })
 

@@ -23,20 +23,27 @@ function App() {
     fetchTodos();
   }, []);
 
-  // function HandleDelete(id){
-  //   setItems((currentItems)=>{
-  //     return currentItems.filter(item => (item.id !== id))
-  //   })
+  async function handleDelete(todoId){
+    try {
+      await fetch(`http://localhost:3000/delete/${todoId}`, {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.log(error)
+    }
+
+    setTodo(prev => prev.filter(todo => todo._id !== todoId))
+  }
 
   return (
     <>
-      <Form />
+      <Form/>
       <ul>
         {todo.map((item) => (
           <li key={item._id}>
             <input type="checkbox" checked={item.complete} />
             {item.todo}
-            <button>Delete</button>
+            <button onClick={()=> {handleDelete(item._id)}}>Delete</button>
           </li>
         ))}
       </ul>

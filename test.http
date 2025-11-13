@@ -1,1 +1,8 @@
 GET http://localhost:3000/
+
+###
+
+DELETE http://localhost:3000/delete/690a9c1d12bc2dbce3a16010
+//Content-Type: application/json
+//Authorization: Bearer {{AccessToken}}
+

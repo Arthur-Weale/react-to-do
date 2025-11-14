@@ -1,12 +1,54 @@
-# React + Vite
+# Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+his project is a full-stack MERN-style To-Do application built to strengthen my skills as a software engineer. The goal was to practice building a complete workflow: setting up an Express server, connecting to MongoDB, building CRUD operations through a REST API, and integrating it with a React frontend. This helped me deepen my understanding of backend architecture, API design, state management in React, and handling real-world data flow from client to server and database.
 
-Currently, two official plugins are available:
+The software allows users to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Create new to-do items
 
-## Expanding the ESLint configuration
+View all stored to-dos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Update completion status using a checkbox
+
+Delete items
+
+Store all data persistently using MongoDB
+
+The purpose of creating this software was to improve my full-stack development confidence by building a working app that uses essential industry concepts: routing, controllers, models, environment variables, React hooks, and RESTful API communication.
+
+
+[Software Demo Video](http://youtube.link.goes.here)
+
+# Development Environment
+
+This project was developed using the following tools:
+
+Node.js – for running the backend JavaScript environment
+
+Express.js – for creating the REST API and routing
+
+MongoDB & Mongoose – for database storage and schema modeling
+
+React (Vite) – for the frontend UI and component-based rendering
+
+Nodemon – for automatically restarting the backend during development
+
+VS Code – as the main development editor
+
+Postman (optional) – for endpoint testing
+
+Programming languages used:
+
+JavaScript (ES Modules) for both frontend and backend
+
+JSX for React components
+
+JSON for API communication
+# Useful Websites
+
+{Make a list of websites that you found helpful in this project}
+* [Express.js Documentation](https://expressjs.com/)
+* [React Documentation](https://react.dev/)
+* [MongoDB & Mongoose Docs](https://mongoosejs.com/)
+* [MDN – JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+* [Vite Documentation](https://vitejs.dev/)

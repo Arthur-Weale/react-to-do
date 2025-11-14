@@ -8,7 +8,7 @@ function App() {
 
   //Fetches todo from the database
   const fetchTodos = async () => {
-    const response = await fetch("http://localhost:3000/");
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/`);
     try {
       if (!response.ok) {
         throw new Error("fetching todo failed");
@@ -28,7 +28,7 @@ function App() {
   //Function handles delete and called the delete method.
   async function handleDelete(todoId){
     try {
-      await fetch(`http://localhost:3000/delete/${todoId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/delete/${todoId}`, {
         method: "DELETE",
       });
       fetchTodos();
@@ -43,12 +43,12 @@ function App() {
   //This function sends checkbox information to the database when the checkbox is interacted with.
   const handleCheck = async (event, idToEdit)=>{
     try {
-      await fetch(`http://localhost:3000/edit/${idToEdit}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/edit/${idToEdit}`, {
         method: "PUT",
         headers: {
           "Content-Type": "Application/Json",
         },
-        body: JSON.stringify({completed: event.target.checked}),
+        body: JSON.stringify({ completed: event.target.checked }),
       });
       fetchTodos();
     } catch (error) {

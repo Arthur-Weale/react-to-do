@@ -15,12 +15,12 @@ export function Form({fetchTodos}){
 
         try {
         //Executes a post request to the url below and submits todo to the backend.
-        await fetch("http://localhost:3000/create", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newItem),
+        await fetch(`${import.meta.env.VITE_API_URL}/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newItem),
         });
         //Calls fetchTodo from App.jsx to have the todo render todos from the database.
         fetchTodos();

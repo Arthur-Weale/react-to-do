@@ -2,7 +2,36 @@ GET http://localhost:3000/
 
 ###
 
+POST http://localhost:3000/create
+
+// Headers
+Content-Type: application/json
+// Authorization: Bearer {{AccessToken}}
+
+// Body (raw JSON)
+{
+    "todo": "Buy groceries",
+    "completed": false
+}
+
+
+###
+
+PUT http://localhost:3000/edit/691621d986ba740ae9997c4c
+
+//Headers
+Content-Type: application/json
+// Authorization: Bearer {{AccessToken}}
+
+// Body (raw JSON)
+{
+    "todo": "I want to watch scandal",
+    "completed": true
+}
+
+###
+
 DELETE http://localhost:3000/delete/690a9c1d12bc2dbce3a16010
-//Content-Type: application/json
+//Content-Type: application/jsona
 //Authorization: Bearer {{AccessToken}}
 

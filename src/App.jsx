@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import {Form} from './Form'
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   //Stores todo state from the database, the data is received in a array.
   const [todo, setTodo] = useState([]);
@@ -28,7 +30,7 @@ function App() {
   //Function handles delete and called the delete method.
   async function handleDelete(todoId){
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/delete/${todoId}`, {
+      await fetch(`${API_URL}/delete/${todoId}`, {
         method: "DELETE",
       });
       fetchTodos();

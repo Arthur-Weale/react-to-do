@@ -1,6 +1,8 @@
 import { useState } from "react";
 import './App.css'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 export function Form({fetchTodos}){
     //Initialises state stores the todo in an object.
     const [newItem, setNewItem] = useState({
@@ -15,7 +17,7 @@ export function Form({fetchTodos}){
 
         try {
         //Executes a post request to the url below and submits todo to the backend.
-        await fetch(`${import.meta.env.VITE_API_URL}/create`, {
+        await fetch(`${API_URL}/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import todoRoutes from "./src/routes/todoRoutes.js"
+import todoRoutes from "./src/routes/todoRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
 
 //Reads enviroment variables and stores them in the process.env object.
 dotenv.config();
@@ -17,6 +18,9 @@ app.use(express.json());
 
 //Routes from the base url
 app.use("/", todoRoutes)
+
+//Authentication Routes
+app.use("/auth", authRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>console.log(`Server is listening on ${port}`))

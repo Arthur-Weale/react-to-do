@@ -4,11 +4,19 @@ const { Schema } = mongoose;
 
 //Describes the shape of the data, serves as type-safety protection.
 const todoSchema = new Schema({
-    todo : String,
-    completed: Boolean
-})
+  userId: { type: String, required: true },
+  todo: { type: String, required: true },
+  completed: { type: Boolean, default: false },
+});
 
 //Defines the model, the shape and identifies the right collection in the database.
-const todoModel = mongoose.model("Todo", todoSchema)
+export const todoModel = mongoose.model("Todo", todoSchema)
 
-export default todoModel;
+
+const userSchema = new Schema({
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true},
+});
+
+
+export const userModel = mongoose.model("User", userSchema);

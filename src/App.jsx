@@ -1,87 +1,17 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import {Form} from './Form'
+import { Route, Routes} from "react-router-dom"
+import SignIn from "./view/SignIn.jsx";
+import SignUp from "./view/SignUp.jsx";
+import Todo from "./Todo.jsx"; 
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-function App() {
-  //Stores todo state from the database, the data is received in a array.
-  const [todo, setTodo] = useState([]);
-
-  //Fetches todo from the database
-  const fetchTodos = async () => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/`);
-    try {
-      if (!response.ok) {
-        throw new Error("fetching todo failed");
-      }
-      const data = await response.json();
-      setTodo(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  //Calls the fetchtodo when the page mounts.
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-
-  //Function handles delete and called the delete method.
-  async function handleDelete(todoId){
-    try {
-      await fetch(`${API_URL}/delete/${todoId}`, {
-        method: "DELETE",
-      });
-      fetchTodos();
-    } catch (error) {
-      console.log(error)
-    }
-
-    //Simple filters todos from the deleted ones
-    setTodo(prev => prev.filter(todo => todo._id !== todoId))
-  }
-
-  //This function sends checkbox information to the database when the checkbox is interacted with.
-  const handleCheck = async (event, idToEdit)=>{
-    try {
-      await fetch(`${import.meta.env.VITE_API_URL}/edit/${idToEdit}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "Application/Json",
-        },
-        body: JSON.stringify({ completed: event.target.checked }),
-      });
-      fetchTodos();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  
+function App(){
   return (
-    <>
-      <Form fetchTodos={fetchTodos}/>
-      <ul>
-        {todo.map((item) => (
-          <li key={item._id}>
-            <input
-              type="checkbox"
-              checked={item.completed}
-              onChange={(e)=> handleCheck(e,item._id)}
-            />
-            {item.todo}
-            <button
-              onClick={() => {
-                handleDelete(item._id);
-              }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
-    </>
+    <Routes>
+      <Route path="/" element={<SignIn />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/app" element={<Todo/>} />
+    </Routes>
   );
 }
 
-export default App
+export default App;

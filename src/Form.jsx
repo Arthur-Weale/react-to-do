@@ -12,23 +12,25 @@ export function Form({fetchTodos}){
 
     //Handles todo submition when add button is pressed.
     async function handleSubmit(event){
-        event.preventDefault();
-        setNewItem({todo: "", completed: false});
+      event.preventDefault();
+      setNewItem({ todo: "", completed: false });
+      const token = localStorage.getItem("token"); // get JWT from localStorage
 
-        try {
+      try {
         //Executes a post request to the url below and submits todo to the backend.
         await fetch(`${API_URL}/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
           body: JSON.stringify(newItem),
         });
         //Calls fetchTodo from App.jsx to have the todo render todos from the database.
         fetchTodos();
-        } catch (error) {
-            console.log(error)
-        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     return<form onSubmit={handleSubmit} >

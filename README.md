@@ -1,6 +1,6 @@
 # Overview
 
-his project is a full-stack MERN-style To-Do application built to strengthen my skills as a software engineer. The goal was to practice building a complete workflow: setting up an Express server, connecting to MongoDB, building CRUD operations through a REST API, and integrating it with a React frontend. This helped me deepen my understanding of backend architecture, API design, state management in React, and handling real-world data flow from client to server and database.
+This project is a full-stack MERN-style To-Do application built to strengthen my skills as a software engineer. The goal was to practice building a complete workflow: setting up an Express server, connecting to MongoDB, building CRUD operations through a REST API, and integrating it with a React frontend. This helped me deepen my understanding of backend architecture, API design, state management in React, and handling real-world data flow from client to server and database.
 
 The software allows users to:
 
